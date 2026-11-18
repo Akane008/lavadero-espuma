@@ -1,0 +1,23 @@
+# Render: servidor Express (los secretos se cargan en el panel)
+services:
+  - type: web
+    name: espuma-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: INITIAL_ADMIN_EMAIL
+        sync: false
+      - key: INITIAL_ADMIN_PASSWORD
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
